@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🩺 Radiomed — Automated Medical Image Diagnosis Assistant
 
 > **Smarter Diagnosis. Better Care.**
