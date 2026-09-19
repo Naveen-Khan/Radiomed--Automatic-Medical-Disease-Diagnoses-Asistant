@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radiomed · Clinical Decision Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/design-system.css">
+  <link rel="stylesheet" href="/static/css/landing.css">
+  <link rel="stylesheet" href="/static/css/auth.css?v=2">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='%230A6E5C'/><circle cx='12' cy='12' r='4' fill='%23FBF8F3'/></svg>">
+</head>
+<body>
+  <div id="root"></div>
+  <div class="toast-stack" id="toast-stack"></div>
+  <template id="tpl-auth">
+    <div class="auth">
+      <div class="auth__visual">
+        <div class="auth__visual-bg"></div>
+        <div class="auth__visual-grid"></div>
+        <div class="auth__orbit" aria-hidden="true">
+          <div class="auth__orbit-ring"></div>
+          <div class="auth__orbit-ring auth__orbit-ring--inner"></div>
+          <span class="auth__plus">+</span>
+          <div class="auth__scan-stack">
+            <!-- <img src="/static/assets/samples/illustraion.png" alt=""> -->
+            <!-- <img src="/static/assets/samples/xray_pneumonia.jpg" alt="">
+            <img src="/static/assets/samples/ct_adenocarcinoma.png" alt=""> -->
+          </div>
+        </div>
+        <div class="auth__visual-content">
+          <div class="auth__visual-mark">
+            <div class="sidebar__brand-mark"></div>
+            <div>
+              <span>Radiomed</span>
+              <div class="auth__visual-tag">Clinical Decision Support</div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+          </div>
+          <h1 class="auth__visual-headline">Smarter Diagnosis.<br><em>Better Care.</em></h1>
+        
+          <p class="auth__visual-body">Three validated DenseNet121 classifiers with Grad-CAM explainability, automated PDF reporting, and a full audit trail.</p>
+          <div class="auth-model-cards">
+            <div class="auth-model-card">
+              <img class="auth-model-card__thumb" src="/static/assets/samples/meningioma.jpg" alt="Brain MRI">
+              <div class="auth-model-card__name">Brain MRI</div>
+              <div class="auth-model-card__acc">94% accuracy</div>
+            </div>
+            <div class="auth-model-card">
+              <img class="auth-model-card__thumb" src="/static/assets/samples/xray_pneumonia.jpg" alt="Chest X-Ray">
+              <div class="auth-model-card__name">Chest X-Ray</div>
+              <div class="auth-model-card__acc">95% accuracy</div>
+            </div>
+            <div class="auth-model-card">
+              <img class="auth-model-card__thumb" src="/static/assets/samples/ct_adenocarcinoma.png" alt="Lung CT">
+              <div class="auth-model-card__name">Lung CT</div>
+              <div class="auth-model-card__acc">93% accuracy</div>
+            </div>
+          </div>
+        </div>
+        <div class="auth__visual-bottom">
+          <div class="auth__visual-stats">
+            <div>
+              <div class="auth__stat-head">
+                <div class="auth__stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+                </div>
+                <div class="auth__stat-num">3</div>
+              </div>
+              <div class="auth__stat-label">Validated Models</div>
+            </div>
+            <div>
+              <div class="auth__stat-head">
+                <div class="auth__stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 10-14h-7l0-6z"/></svg>
+                </div>
+                <div class="auth__stat-num">&lt;3s</div>
+              </div>
+              <div class="auth__stat-label">Inference Time</div>
+            </div>
+            <div>
+              <div class="auth__stat-head">
+                <div class="auth__stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>
+                </div>
+                <div class="auth__stat-num">14K+</div>
+              </div>
+              <div class="auth__stat-label">Training Images</div>
+            </div>
+          </div>
+          <div class="auth__visual-footer">AI · Medical Imaging · Better Outcomes</div>
+        </div>
+      </div>
+      <div class="auth__panel">
+        <div class="auth__panel-top" id="auth-panel-link"></div>
+        <div class="auth__card" id="auth-card"></div>
+      </div>
+    </div>
+  </template>
+  <template id="tpl-app">
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand"><div class="sidebar__brand-mark"></div><div><div class="sidebar__brand-name">Radiomed</div><div class="sidebar__brand-tag">Clinical Workbench</div></div></div>
+        <nav class="sidebar__nav">
+          <div class="sidebar__nav-section">Workspace</div>
+          <a class="sidebar__link" data-route="dashboard" href="#/dashboard"><svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Overview</a>
+          <a class="sidebar__link" data-route="diagnose" href="#/diagnose"><svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>New diagnosis</a>
+          <a class="sidebar__link" data-route="patients" href="#/patients"><svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Patient records</a>
+          <div class="sidebar__nav-section">Reference</div>
+          <a class="sidebar__link" data-route="models" href="#/models"><svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h8M6 8v8M18 8v8M8 18h8"/></svg>Model registry</a>
+          <div class="sidebar__nav-section">Account</div>
+          <a class="sidebar__link" data-route="settings" href="#/settings"><svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+        </nav>
+        <div class="sidebar__user">
+          <div class="sidebar__avatar" id="sb-avatar">DR</div>
+          <div class="sidebar__user-meta"><div class="sidebar__user-name" id="sb-name">—</div><div class="sidebar__user-role" id="sb-role">clinician</div></div>
+          <button class="sidebar__logout" id="sb-logout" title="Sign out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <a href="#/landing" class="topbar__back" title="Back to landing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+            <div class="topbar__crumbs"><span>Radiomed</span><span class="topbar__sep">/</span><span class="topbar__crumb-current" id="crumb-current">Overview</span></div>
+          </div>
+          <div class="topbar__actions">
+            <div class="topbar__search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="topbar-search" placeholder="Search scans, patients, reports…" autocomplete="off"><kbd>⌘K</kbd></div>
+            <button class="btn btn--primary btn--sm" id="btn-new-diagnosis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>New diagnosis</button>
+          </div>
+        </header>
+        <div class="content" id="content"></div>
+      </main>
+    </div>
+  </template>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
